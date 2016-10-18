@@ -1,0 +1,156 @@
+record( bi, "$(P)cam1:BI:NAME"){
+  field( DESC, "$(DESC)")
+}
+record( bi, "$(P)cam1:BI:EPICS:NAME"){
+  field( DESC, "$(P)cam1:")
+}
+record( bi, "$(P)cam1:ID"){
+  field( DESC, "$(ID)")
+}
+record( ao, "$(P)cam1:X_RTCL_CTR"){
+  field( DESC, "X center:")
+  field( PREC, "3")
+  field( PINI, "1")
+}
+record( ao, "$(P)cam1:Y_RTCL_CTR"){
+  field( DESC, "Y center:")
+  field( PREC, "3")
+  field( PINI, "1")
+}
+record( ao, "$(P)cam1:RESOLUTION"){
+  field( DESC, "Resolution:")
+  field( PREC, "3")
+  field( PINI, "1")
+}
+record( ao, "$(P)cam1:ResolutionX"){
+  field( DESC, "x resolution")
+  field( PREC, "1")
+  field( EGU, "um\/px")
+  field( VAL,  "1")
+  field( PINI, "1")
+  field( FLNK, "$(P)cam1:ScaledSizeX.PROC")
+}
+record( ao, "$(P)cam1:ResolutionY"){
+  field( DESC, "y resolution")
+  field( PREC, "1")
+  field( EGU,  "um\/px")
+  field( VAL,  "1")
+  field( PINI, "1")
+  field( FLNK, "$(P)cam1:ScaledSizeY.PROC")
+}
+record( calc, "$(P)cam1:ScaledSizeX"){
+  field( DESC, "x scaled size")
+  field( PREC, "2")
+  field( EGU,  "mm")
+  field( INPA, "$(P)cam1:SizeX_RBV.VAL")
+  field( INPB, "$(P)cam1:ResolutionX.VAL")
+  field( CALC, "A*B*.001")
+  field( PINI, "1")
+  field( SCAN, "1 second")
+  field( FLNK, "$(P)cam1:ScaledArraySizeX.PROC")
+}
+record( calc, "$(P)cam1:ScaledSizeY"){
+  field( DESC, "y scaled size")
+  field( PREC, "2")
+  field( EGU,  "mm")
+  field( INPA, "$(P)cam1:SizeY_RBV.VAL")
+  field( INPB, "$(P)cam1:ResolutionY.VAL")
+  field( CALC, "A*B*.001")
+  field( PINI, "1")
+  field( SCAN, "1 second")
+  field( FLNK, "$(P)cam1:ScaledArraySizeY.PROC")
+}
+record( calc, "$(P)cam1:ScaledArraySizeX"){
+  field( DESC, "x scaled array size")
+  field( PREC, "2")
+  field( EGU,  "mm")
+  field( INPA, "$(P)cam1:ArraySizeX_RBV.VAL")
+  field( INPB, "$(P)cam1:ResolutionX.VAL")
+  field( CALC, "A*B*.001")
+  field( PINI, "1")
+  field( SCAN, "5 second")
+  field( FLNK, "$(P)Stats1:ScaledSigmaX.PROC")
+}
+record( calc, "$(P)cam1:ScaledArraySizeY"){
+  field( DESC, "y scaled array size")
+  field( PREC, "2")
+  field( EGU,  "mm")
+  field( INPA, "$(P)cam1:ArraySizeY_RBV.VAL")
+  field( INPB, "$(P)cam1:ResolutionY.VAL")
+  field( CALC, "A*B*.001")
+  field( PINI, "1")
+  field( SCAN, "5 second")
+  field( FLNK, "$(P)Stats1:ScaledSigmaY.PROC")
+}
+record( calc, "$(P)Stats1:ScaledSigmaX"){
+  field( DESC, "x scaled sigma")
+  field( PREC, "2")
+  field( EGU,  "mm")
+  field( INPA, "$(P)Stats1:SigmaX_RBV.VAL")
+  field( INPB, "$(P)cam1:ResolutionX.VAL")
+  field( CALC, "A*B*.001")
+  field( PINI, "1")
+  field( SCAN, ".1 second")
+}
+record( calc, "$(P)Stats1:ScaledSigmaY"){
+  field( DESC, "y scaled sigma")
+  field( PREC, "2")
+  field( EGU,  "mm")
+  field( INPA, "$(P)Stats1:SigmaY_RBV.VAL")
+  field( INPB, "$(P)cam1:ResolutionY.VAL")
+  field( CALC, "A*B*.001")
+  field( PINI, "1")
+  field( SCAN, ".1 second")
+}
+
+######################################################################
+# Camera power assignment
+record( longout, "$(P)cam1:PDU"){
+  field( DESC, "PDU assignment for camera power")
+  field( PINI, "1")
+}
+record( longout, "$(P)cam1:OUTLET"){
+  field( DESC, "Outlet assignment for camera power")
+  field( PINI, "1")
+}
+
+#######################################################################
+# Target position
+record( ao, "$(P)cam1:TARGETX"){
+  field( DESC, "Target x coordinate")
+  field( OUT,  "$(P)Stats1:CursorX")
+  field( PREC, "0")
+  field( EGU,  "px")
+  field( PINI, "1")
+  field( FLNK, "$(P)Stats1:CursorX")
+}
+record( ao, "$(P)cam1:TARGETY"){
+  field( DESC, "Target y coordinate")
+  field( OUT,  "$(P)Stats1:CursorY")
+  field( PREC, "0")
+  field( EGU,  "px")
+  field( PINI, "1")
+  field( FLNK, "$(P)Stats1:CursorY")
+}
+
+#######################################################################
+# Beam position
+record( ao, "$(P)cam1:BEAMX"){
+  field( DESC, "Beam x coordinate")
+  field( PREC, "0")
+  field( EGU,  "px")
+  field( PINI, "1")
+}
+record( ao, "$(P)cam1:BEAMY"){
+  field( DESC, "Beam y coordinate")
+  field( PREC, "0")
+  field( EGU,  "px")
+  field( PINI, "1")
+}
+#######################################################################
+# Bit depth
+record( longout, "$(P)cam1:bitDepth"){
+  field( DESC, "Bit depth")
+  field( VAL,  "8")
+  field( PINI, "1")
+}

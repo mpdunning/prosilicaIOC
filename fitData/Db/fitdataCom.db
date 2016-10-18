@@ -1,0 +1,14 @@
+record( stringin, "$(P):SI:NAME"){
+  field( DESC, "$(IOC)")
+  field( SCAN, "I/O Intr")
+  field( DTYP, "asynOctetRead")
+  field( INP,  "@asyn($(PORT),0,1)SI_NAME")
+}
+record( waveform, "$(P):WF:MESSG"){
+  field( DESC, "Message")
+  field( SCAN, "I/O Intr")
+  field( DTYP, "asynOctetRead")
+  field( FTVL, "CHAR")
+  field( NELM, "2000")
+  field( INP,  "@asyn($(PORT),0,1)WF_MESSG")
+}

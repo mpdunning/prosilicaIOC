@@ -1,0 +1,33 @@
+
+file ADBase.template
+{
+pattern{ R,       PORT, ADDR, TIMEOUT}
+       { cam1:, $(PORT),   0,       1}
+}
+file NDFile.template
+{
+pattern{ R,       PORT, ADDR, TIMEOUT}
+       { cam1:, $(PORT),   0,       1}
+}
+file prosilica.template
+{
+pattern{ R,       PORT, ADDR, TIMEOUT}
+       { cam1:, $(PORT),   0,       1}
+}
+file NDPluginBase.template
+{
+pattern{ R,       PORT, ADDR, TIMEOUT, NDARRAY_PORT,NDARRAY_ADDR}
+       { cam1:, image1,    0,       1,      $(PORT),           0}
+}
+#for 8 bit mode
+file NDStdArrays.template
+{
+pattern{ R,       PORT, ADDR, TIMEOUT, TYPE,  FTVL, NELEMENTS}
+       { cam1:, image1,    0,       1, Int8, UCHAR,   2073600}
+}
+#for 16 bit mode
+file NDStdArrays.template
+{
+pattern{ R,       PORT, ADDR, TIMEOUT,  TYPE,  FTVL, NELEMENTS}
+       { cam1:, image1,    0,       1, Int16, SHORT,   2073600}
+}

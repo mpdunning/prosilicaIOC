@@ -1,0 +1,30 @@
+# Assuming a 1200x1600 full resolution image, divide the length of each side by various amounts
+# Added for asta by request from Garth Brown on 20140313...md
+
+record(subArray, "$(P)10th") {
+  field(DESC, "Image dimensions 1/10 of full")
+  field(TSEL, "$(P).TIME")
+  field(INP, "$(P)")
+  field(NELM, "19200")
+}
+
+record(subArray, "$(P)20th") {
+  field(DESC, "Image dimensions 1/20 of full")
+  field(TSEL, "$(P).TIME")
+  field(INP, "$(P)")
+  field(NELM, "4800")
+}
+
+record(subArray, "$(P)50th") {
+  field(DESC, "Image dimensions 1/50 of full")
+  field(TSEL, "$(P).TIME")
+  field(INP, "$(P)")
+  field(NELM, "768")
+}
+
+record(subArray, "$(P)100th") {
+  field(DESC, "Image dimensions 1/100 of full")
+  field(TSEL, "$(P).TIME")
+  field(INP, "$(P)")
+  field(NELM, "192")
+}

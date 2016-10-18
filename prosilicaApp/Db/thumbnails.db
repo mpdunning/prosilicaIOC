@@ -1,0 +1,62 @@
+# Assuming a 1200x1600 full resolution image, divide the length of each side by various amounts
+
+record(subArray, "$(P)10th") {
+  field(DESC, "Image dimensions 1/10 of full")
+  field(TSEL, "$(P).TIME CPP MS")
+  field(INP, "$(P)")
+  field(NELM, "19200")
+  field(MALM, "19200")
+}
+
+record(subArray, "$(P)20th") {
+  field(DESC, "Image dimensions 1/20 of full")
+  field(TSEL, "$(P).TIME CPP MS")
+  field(INP, "$(P)")
+  field(NELM, "4800")
+  field(MALM, "4800")
+}
+
+record(subArray, "$(P)50th") {
+  field(DESC, "Image dimensions 1/50 of full")
+  field(TSEL, "$(P).TIME CPP MS")
+  field(INP, "$(P)")
+  field(NELM, "768")
+  field(MALM, "768")
+}
+
+record(subArray, "$(P)100th") {
+  field(DESC, "Image dimensions 1/100 of full")
+  field(TSEL, "$(P).TIME CPP MS")
+  field(INP, "$(P)")
+  field(NELM, "192")
+  field(MALM, "192")
+}
+record(subArray, "$(P)2th") {
+  field(DESC, "Image dimensions 1/2 of full")
+  field(TSEL, "$(P).TIME CPP MS")
+  field(INP, "$(P)")
+  field(NELM, "480000")
+  field(MALM, "480000")
+}
+record(subArray, "$(P)4th") {
+  field(DESC, "Image dimensions 1/4 of full")
+  field(TSEL, "$(P).TIME CPP MS")
+  field(INP, "$(P)")
+  field(NELM, "120000")
+  field(MALM, "120000")
+}
+record(subArray, "$(P)8th") {
+  field(DESC, "Image dimensions 1/8 of full")
+  field(TSEL, "$(P).TIME CPP MS")
+  field(INP, "$(P)")
+  field(NELM, "30000")
+  field(MALM, "30000")
+}
+record(subArray, "$(P)16th") {
+  field(DESC, "Image dimensions 1/16 of full")
+  field(TSEL, "$(P).TIME CPP MS")
+  field(INP, "$(P)")
+  field(NELM, "7500")
+  field(MALM, "7500")
+}
+

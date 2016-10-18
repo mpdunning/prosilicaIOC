@@ -1,0 +1,12 @@
+$(P)cam1:X_RTCL_CTR
+$(P)cam1:Y_RTCL_CTR
+$(P)cam1:RESOLUTION
+$(P)cam1:ResolutionX
+$(P)cam1:ResolutionY
+$(P)cam1:PDU
+$(P)cam1:OUTLET
+$(P)cam1:TARGETX
+$(P)cam1:TARGETY
+$(P)cam1:BEAMX
+$(P)cam1:BEAMY
+$(P)cam1:BI:NAME.DESC

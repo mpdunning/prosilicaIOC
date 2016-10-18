@@ -1,0 +1,18 @@
+#---- C$(NN) ------------------------------
+record( ai, "$(P):AI:C$(NN)_$(J)"){
+  field( DESC, "C$(NN):")
+  field( DTYP, "asynFloat64")
+  field( INP,  "@asyn($(PORT),$(N),1)AI_C$(NN)_$(J)")
+  field( PREC, "5")
+  field( SCAN, "I/O Intr")
+  field( PREC, "5")
+  field( EGU,  "$(EGU)")
+}
+record( ai, "$(P):AI:CER$(NN)_$(J)"){
+  field( DTYP, "asynFloat64")
+  field( INP,  "@asyn($(PORT),$(N),1)AI_CER$(NN)_$(J)")
+  field( SCAN, "I/O Intr")
+  field( PREC, "5")
+  field( EGU,  "$(EGU)")
+}
+

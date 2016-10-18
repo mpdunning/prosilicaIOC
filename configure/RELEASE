@@ -1,0 +1,25 @@
+#RELEASE Location of external products
+# Run "gnumake clean uninstall install" in the application
+# top directory each time this file is changed.
+
+include $(TOP)/../../../RELEASE_SITE
+
+TOOLS=/afs/slac/g/testfac/tools
+HDF5=$(TOOLS)/hdf5
+SZIP=$(TOOLS)/szip
+
+TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
+
+EPICS_MODULES=$(EPICS_SITE_TOP)/modules
+
+AREAD=$(EPICS_MODULES)/areaD/R2.4
+MPFIT=$(EPICS_MODULES)/mpfit/R1.2.1
+UTILS=$(EPICS_MODULES)/utils/R1.0
+
+ADPROSILICA=$(AREAD)/ADProsilica
+
+-include $(AREAD)/configure/RELEASE_PATHS.local
+-include $(AREAD)/configure/RELEASE_PATHS.local.$(EPICS_HOST_ARCH)
+-include $(AREAD)/configure/RELEASE_PRODS.local
+-include $(TOP)/RELEASE.local
+-include $(TOP)/configure/RELEASE.local

@@ -1,0 +1,92 @@
+file NDPluginBase.template
+{
+pattern{     R,       PORT, ADDR, TIMEOUT, NDARRAY_PORT,NDARRAY_ADDR}
+       { TIFF1:, fileTIFF1,    0,       1,      $(PORT),           0}
+}
+file NDFile.template
+{
+pattern{     R,       PORT, ADDR, TIMEOUT}
+       { TIFF1:, fileTIFF1,    0,       1}
+}
+file NDFileTIFF.template
+{
+pattern{     R,       PORT, ADDR, TIMEOUT}
+       { TIFF1:, fileTIFF1,    0,       1}
+}
+#------------------------------
+file NDPluginBase.template
+{
+pattern{     R,       PORT, ADDR, TIMEOUT, NDARRAY_PORT,NDARRAY_ADDR}
+       { JPEG1:, fileJPEG1,    0,       1,      $(PORT),           0}
+}
+file NDFile.template
+{
+pattern{     R,       PORT, ADDR, TIMEOUT}
+       { JPEG1:, fileJPEG1,    0,       1}
+}
+file NDFileJPEG.template
+{
+pattern{     R,       PORT, ADDR, TIMEOUT}
+       { JPEG1:, fileJPEG1,    0,       1}
+}
+#------------------------------
+file NDPluginBase.template
+{
+pattern{    R,  PORT, ADDR, TIMEOUT, NDARRAY_PORT,NDARRAY_ADDR}
+       { ROI1:, ROI1,    0,       1,      $(PORT),           0}
+}
+file NDROI.template
+{
+pattern{    R,  PORT, ADDR, TIMEOUT}
+       { ROI1:, ROI1,    0,       1}
+}
+#------------------------------
+file NDPluginBase.template
+{
+pattern{     R,   PORT, ADDR, TIMEOUT, NDARRAY_PORT,NDARRAY_ADDR}
+       { Proc1:, PROC1,    0,       1,      $(PORT),           0}
+}
+file NDProcess.template
+{
+pattern{     R,   PORT, ADDR, TIMEOUT}
+       { Proc1:, PROC1,    0,       1}
+}
+#------------------------------
+file NDPluginBase.template
+{
+pattern{       R,   PORT, ADDR, TIMEOUT, NDARRAY_PORT,NDARRAY_ADDR}
+       { Stats1:, STATS1,    0,       1,         ROI1,           0}
+}
+file NDStats.template
+{
+pattern{       R,   PORT, ADDR, TIMEOUT,HIST_SIZE}
+       { Stats1:, STATS1,    0,       1,      256}
+}
+#------------------------------
+#file NDPluginBase.template
+#{
+#pattern{       R,   PORT, ADDR, TIMEOUT, NDARRAY_PORT,NDARRAY_ADDR}
+#       { Trans1:, TRANS1,    0,       1,      $(PORT),           0}
+#}
+#file NDTransform.template
+#{
+#pattern{       R,   PORT, ADDR, TIMEOUT}
+#       { Stats1:, STATS1,    0,       1}
+#}
+#------------------------------
+file NDPluginBase.template
+{
+pattern{      R,  PORT, ADDR, TIMEOUT, NDARRAY_PORT,NDARRAY_ADDR}
+       { Over1:, OVER1,    0,       1,      $(PORT),           0}
+}
+file NDOverlay.template
+{
+pattern{      R,  PORT, ADDR, TIMEOUT}
+       { Over1:, OVER1,    0,       1}
+}
+file NDOverlayN.template
+{
+#pattern{        R, NAME, SHAPE,      O, XPOS, YPOS, XSIZE, YSIZE, PORT, ADDR, TIMEOUT}
+  { R=Over1:1:, NAME=ROI1, SHAPE=1, O=Over1:, XPOS=$(PREFIX)ROI1:MinX_RBV, YPOS=$(PREFIX)ROI1:MinY_RBV, XSIZE=$(PREFIX)ROI1:SizeX_RBV, YSIZE=$(PREFIX)ROI1:SizeY_RBV, PORT=OVER1, ADDR=0, TIMEOUT=1}
+#pattern{        R, NAME, SHAPE,      O, XPOS, YPOS, XSIZE, YSIZE, PORT, ADDR, TIMEOUT}
+}

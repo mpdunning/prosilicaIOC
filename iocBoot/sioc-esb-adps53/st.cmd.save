@@ -1,0 +1,56 @@
+#!../../bin/linux-x86/prosilica
+
+< envPaths
+
+errlogInit(20000)
+
+cd $(TOP)
+dbLoadDatabase("dbd/prosilica.dbd")
+
+prosilica_registerRecordDeviceDriver(pdbbase) 
+
+# Setup for GX1910 Unique ID = 112127
+
+epicsEnvSet("PREFIX", "PS1:")
+epicsEnvSet("PORT",   "PS1")
+epicsEnvSet("QSIZE",  "20")
+epicsEnvSet("XSIZE",  "1920")
+epicsEnvSet("YSIZE",  "1080")
+epicsEnvSet("NCHANS", "2048")
+
+# The second parameter to the prosilicaConfig command is the uniqueId of the
+# camera. The simplest way to determine the uniqueId of a camera is to run
+# the Prosilica GigEViewer application, select the camera, and press the
+# "i" icon on the bottom of the main window to show the camera information
+# for this camera.  The Unique ID will be displayed on the first line in
+# the information window.
+
+prosilicaConfig("$(PORT)", 5001319, 10, -1)
+asynSetTraceIOMask("$(PORT)",0,2)
+#asynSetTraceMask("$(PORT)",0,255)
+
+dbLoadRecords("db/prosilica.db","P=$(PREFIX),PORT=$(PORT)")
+
+# moved autosave stuff here so that individual IOC can do it their way.
+set_requestfile_path("./")
+set_requestfile_path("../")
+set_requestfile_path("$(AREAD)/ADApp/Db")
+set_requestfile_path("$(SSCAN)/sscanApp/Db")
+set_savefile_path("/nfs/slac/g/testfac/esb/$(IOC)/autosave")
+#set_savefile_path("./autosave")
+set_pass0_restoreFile("auto_settings.sav")
+set_pass1_restoreFile("auto_settings.sav")
+save_restoreSet_status_prefix("$(PREFIX)")
+dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=$(PREFIX)")
+
+# Load all other plugins using commonPlugins.cmd
+< iocBoot/plugins.cmd
+
+#asynSetTraceMask("$(PORT)",0,255)
+
+iocInit()
+
+#asynSetTraceMask("$(PORT)",0,1)
+
+# save things every thirty seconds
+create_monitor_set("auto_settings.req", 30,"P=$(PREFIX),D=cam1:")

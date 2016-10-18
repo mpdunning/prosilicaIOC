@@ -1,0 +1,21 @@
+file fitdataCom.db{
+  {N=0}
+}
+file fitdataCtrl.db {
+pattern	
+{J, N, AXIS, AXIS_N}
+{0, 0,    X,      0}
+{1, 0,    Y,      1}
+}
+file aiParam.db {
+pattern	
+{ J, NN, N, EGU}
+{ 0, 00, 0,  ""}
+{ 0, 01, 0,  ""}
+{ 0, 02, 0,  ""}
+{ 0, 03, 0,  ""}
+{ 1, 00, 0,  ""}
+{ 1, 01, 0,  ""}
+{ 1, 02, 0,  ""}
+{ 1, 03, 0,  ""}
+}

@@ -1,0 +1,146 @@
+record( waveform, "$(P):WF:X:DATA_$(J)"){
+  field( DESC, "x data")
+  field( SCAN, "I/O Intr")
+  field( DTYP, "asynFloat64ArrayIn")
+  field( FTVL, "DOUBLE")
+  field( NELM, "2000")
+  field( INP,  "@asyn($(PORT),0,1)WF_XDATA_$(J)")
+  field( PREC, "1")
+}
+record( waveform, "$(P):WF:Y:DATA_$(J)"){
+  field( DESC, "y data")
+  field( SCAN, "I/O Intr")
+  field( DTYP, "asynFloat64ArrayIn")
+  field( FTVL, "DOUBLE")
+  field( NELM, "2000")
+  field( INP,  "@asyn($(PORT),0,1)WF_YDATA_$(J)")
+}
+record( waveform, "$(P):WF:Y:FIT_$(J)"){
+  field( DESC, "y fit")
+  field( SCAN, "I/O Intr")
+  field( DTYP, "asynFloat64ArrayIn")
+  field( FTVL, "DOUBLE")
+  field( NELM, "2000")
+  field( INP,  "@asyn($(PORT),0,1)WF_YFIT_$(J)")
+}
+record( longin, "$(P):LI:N:ITER_$(J)"){
+  field( DESC, "Number of iterations")
+  field( DTYP, "asynInt32")
+  field( INP,  "@asyn($(PORT),0,1)LI_NITER_$(J)")
+  field( SCAN, "I/O Intr")
+}
+record( longin, "$(P):LI:N:FEVAL_$(J)"){
+  field( DESC, "Number of function evaluations")
+  field( DTYP, "asynInt32")
+  field( INP,  "@asyn($(PORT),0,1)LI_NFEV_$(J)")
+  field( SCAN, "I/O Intr")
+}
+record( longin, "$(P):LI:STATUS_$(J)"){
+  field( DESC, "Fitting status")
+  field( DTYP, "asynInt32")
+  field( INP,  "@asyn($(PORT),0,1)LI_STATUS_$(J)")
+  field( SCAN, "I/O Intr")
+}
+record( longin, "$(P):LI:N:PARMS_$(J)"){
+  field( DESC, "Number of parameters used")
+  field( DTYP, "asynInt32")
+  field( INP,  "@asyn($(PORT),0,1)LI_NPARM_$(J)")
+  field( SCAN, "I/O Intr")
+  field( VAL,  "4")
+  field( PINI, "1")
+}
+record( longin, "$(P):LI:N:FREE_$(J)"){
+  field( DESC, "Number of free parameters")
+  field( DTYP, "asynInt32")
+  field( INP,  "@asyn($(PORT),0,1)LI_NFREE_$(J)")
+  field( SCAN, "I/O Intr")
+}
+record( longin, "$(P):LI:N:PEGD_$(J)"){
+  field( DESC, "Number of pegged parameters")
+  field( DTYP, "asynInt32")
+  field( INP,  "@asyn($(PORT),0,1)LI_NPEGD_$(J)")
+  field( SCAN, "I/O Intr")
+}
+record( longin, "$(P):LI:N:PNTS_$(J)"){
+  field( DESC, "Number of points used")
+  field( DTYP, "asynInt32")
+  field( INP,  "@asyn($(PORT),0,1)LI_NFUNC_$(J)")
+  field( SCAN, "I/O Intr")
+}
+record( ai, "$(P):AI:CHISQ:0_$(J)"){
+  field( DESC, "Initial ChiSq:")
+  field( DTYP, "asynFloat64")
+  field( INP,  "@asyn($(PORT),0,1)AI_CHISQ0_$(J)")
+  field( SCAN, "I/O Intr")
+  field( PREC, "5")
+}
+record( ai, "$(P):AI:CHISQ:1_$(J)"){
+  field( DESC, "Final ChiSq:")
+  field( DTYP, "asynFloat64")
+  field( INP,  "@asyn($(PORT),0,1)AI_CHISQ1_$(J)")
+  field( SCAN, "I/O Intr")
+  field( PREC, "5")
+}
+#--md test---------------------------------------------
+record( aSub, "$(P):AS:PROJ_$(J)"){
+  field( DESC, "Projection from AD")
+  field( SNAM, "asProj")
+  field( INPA, "$(PRE)Stats1:ProfileAverage$(AXIS)_RBV CPP")
+  field( FTA,  "DOUBLE")  field( NOA,  "2000")
+  field( INPB, "$(PRE)Stats1:ArraySize$(AXIS_N)_RBV")
+  field( FTB,  "SHORT")  field( NOB,  "1")
+  field( INPC, "$(P):DATA:SRC")
+  field( FTC,  "SHORT")  field( NOC,  "1")
+  field( INPD, "$(PRE)Stats1:ProfileCentroid$(AXIS)_RBV")
+  field( FTD,  "DOUBLE")  field( NOD,  "2000")
+  field( INPE, "$(PRE)Stats1:ProfileCursor$(AXIS)_RBV")
+  field( FTE,  "DOUBLE")  field( NOE,  "2000")
+  field( OUTA, "$(P):WF:PROJ_$(J)")
+  field( FTVA, "DOUBLE")  field( NOVA, "2000")
+  field( OUTB, "$(P):SIZE_$(J)")
+  field( FTVB, "SHORT")  field( NOVB, "1")
+  field( DISV, "0")
+  field( FLNK, "$(P):WF:PROJ_$(J)")
+}
+record( waveform, "$(P):WF:PROJ_$(J)"){
+  field( DESC, "Projection from AD")
+  field( DTYP, "asynFloat64ArrayOut")
+  field( FTVL, "DOUBLE")  
+  field( NELM, "2000")
+  field( INP,  "@asyn($(PORT),0,1)WF_PROJ_$(J)")
+  field( FLNK, "$(P):SIZE_$(J)")
+}
+record( ao, "$(P):CAL_$(J)"){
+  field( DESC, "Pixel calibration")
+  field( DTYP, "asynFloat64")
+  field( DOL,  "$(PRE)cam1:Resolution$(AXIS) CPP")
+  field( OMSL, "closed_loop")
+  field( OUT,  "@asyn($(PORT),0,1)AO_CAL_$(J)")
+  field( EGU,  "um/px")
+  field( PREC, "2")
+  field( PINI, "1")
+}
+record( longout, "$(P):SIZE_$(J)"){
+  field( DESC, "Image size")
+  field( DTYP, "asynInt32")
+  field( OUT,  "@asyn($(PORT),0,1)LO_SIZE_$(J)")
+  field( EGU,  "px")
+}
+record( calc, "$(P):FWHM_$(J)"){
+  field( DESC, "full width half max")
+  field( INPA, "$(P):AI:C03_$(J) CPP")
+  field( CALC, "A*2.355")
+  field( EGU,  "")
+}
+record( mbbi, "$(P):DATA:SRC"){
+  field( DESC, "Data source")
+  field( ZRVL, "0")
+  field( ONVL, "1")
+  field( TWVL, "2")
+  field( ZRST, "Projection")
+  field( ONST, "Centroid")
+  field( TWST, "Line-Out")
+  field( VAL,  "0")
+  field( PINI, "1")
+}
+
